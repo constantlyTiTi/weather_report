@@ -1,18 +1,21 @@
-import React from "react";
-import {getLatAndLonByCityId} from '@/app/pages/api/weatherApi'
+'use client'
+import React, {useEffect,useState} from "react";
+import { SearchResultContext } from '../context/createContext'
+import {GET_WEATHER_ICON} from '@/app/const/urls'
 
-const WeatherTemperatureBox = ({ city, temperature, weatherIcon, dateTime, wind_speed, feels_like, humidity }) => {
+const WeatherTemperatureBox = () => {
+    const {weatherInfo} = useContext(SearchResultContext)
+    const {name,weather,main} = weatherInfo
+    const { temperature, dateTime, wind_speed, feels_like, humidity } = main 
+    const {icon} = weather
 
-    const getWeatherInfor = async() =>{
-        let promise = getLatAndLonByCityId(city)
-    }
 
     return (
         <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">{city}</h5>
+            <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">{name}</h5>
             <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">{dateTime}</p>
             <div className="flex flex-col terms-center">
-                <img src={weatherIcon} />
+                <img src={`${GET_WEATHER_ICON}${icon}@2x.png`} />
                 <h3>{temperature}</h3>
             </div>
             <div className="grid grid-cols-3 gap-4">

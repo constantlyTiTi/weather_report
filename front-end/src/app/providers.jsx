@@ -5,10 +5,12 @@ import { useState } from "react"
 
 const Provider = ({children}) => {
 
-    const [city, setCity] = useState()
+    const [weatherInfo, setWeatherInfo] = useState({
+
+    })
 
     return (
-        <SearchResultContext.Provider value={{city, setCity}}>
+        <SearchResultContext.Provider value={{weatherInfo, setWeatherInfo}}>
             {children}
         </SearchResultContext.Provider>
     )
