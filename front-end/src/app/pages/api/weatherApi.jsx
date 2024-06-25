@@ -4,7 +4,8 @@ import httpConfig from '@/app/config/http-config.json'
 
 const WEATHER_API_KEY = process.env.WEATHER_API_KEY
 
-export const getCurrentWeatherData = ({lat,lon}) => {
+export const getCurrentWeatherData = ({lon,lat}) => {
+    console.log("axio")
     return axios.get(`${WEATHER_CURRENT_BASE}lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`)
 }
 

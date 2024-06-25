@@ -1,8 +1,10 @@
 import { Inter } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import Header from './components/Header'
 import Provider from '@/app/providers'
 import AddressCombobox from '@/app/components/AddressCombobox'
+import Loading from "./loading";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +21,7 @@ export default function RootLayout({ children }) {
         <Header> 
           <AddressCombobox/>
         </Header>
-        {children}
+        <Suspense fallback={<Loading />}>{children}</Suspense>
         </Provider>
         </body>
     </html>

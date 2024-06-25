@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 // import { Loader } from '@googlemaps/js-api-loader';
 import { SearchResultContext } from '../context/createContext'
 import {getCurrentWeatherData} from '../pages/api/weatherApi'
@@ -7,14 +7,18 @@ import {getProvinces, getCitiesByProvince} from '../pages/api/cityApi'
 
 const AddressCombobox = ({ options }) => {
 
-  const {setWeather} = useContext(SearchResultContext)
+  const {setSelectCityInfo} = useContext(SearchResultContext)
   const [selectedCity, setSelectedCity]  = useState('')
   const [isOpenDropDown, setIsOpenDropDown] = useState(false)
   const [selectProv, setSelectProv] = useState()
   const [provinces, setProvinces] = useState(["on"])
   // const inputRef = useRef()
 
-  // getProvinces().then(res=> setProvinces(res.data)).catch(err => console.log(err))
+  useEffect(()=>{
+    getProvinces().then(res=> setProvinces(res.data)).catch(err => console.log(err))
+  },[])
+
+ 
 
   let filteredCity = []
 
@@ -73,13 +77,7 @@ const AddressCombobox = ({ options }) => {
 
     if(filteredCityMock.includes(s=>s.name===selectedCity)){
       const city = filteredCityMock.find(s=>s.name === selectedCity)
-      getCurrentWeatherData({lat:city.location[0],lon:city.location[1]})
-      .then(
-        res=> setWeather(res.data)
-      )
-      .catch( error =>
-        console.log(error)
-      )
+      setSelectCityInfo(city)
     }
     
   }

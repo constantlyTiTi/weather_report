@@ -6,6 +6,13 @@ export const getCitiesByProvince = ({province}) => {
     })
 }
 
+export const getCityByCityId = ({city_id}) => {
+    return axios.get(`/${city_id}`, {
+        headers:httpConfig.headers
+    })
+}
+
+
 export const getProvinces = () => {
     return axios.get(`/provinces`, {
         headers:httpConfig.headers
