@@ -12,10 +12,10 @@ const Home = () => {
       .then((permissionStatus) => {
         let isGeoPermit = permissionStatus.state === 'granted'
 
-        console.log("selectCityInfo1111", selectCityInfo)
+ 
 
-        if (!selectCityInfo || selectCityInfo === undefined || selectCityInfo._id === undefined) {
-          console.log("selectCityInfo222", selectCityInfo)
+        if (!selectCityInfo || selectCityInfo._id === undefined) {
+      
           !!isGeoPermit && navigator.geolocation.getCurrentPosition(pos => {
             setSelectCityInfo({
               location: [pos.coords.longitude, pos.coords.latitude]
