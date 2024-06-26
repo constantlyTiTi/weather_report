@@ -2,11 +2,11 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "src/server.js",
+  "main": "src/api/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec node --env-file=.env.local src/server.js",
-    "start": "node dist/server.js",
+    "dev": "nodemon --exec node --env-file=.env.local src/api/index.js",
+    "start": "node dist/api/index.js",
     "build": "babel src -d public"
   },
   "keywords": [],
