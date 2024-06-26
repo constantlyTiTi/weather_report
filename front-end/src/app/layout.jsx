@@ -21,7 +21,9 @@ export default function RootLayout({ children }) {
         <Header> 
           <AddressCombobox/>
         </Header>
+        <div className='h-screen max-w-lg mx-auto my-3'>
         <Suspense fallback={<Loading />}>{children}</Suspense>
+        </div>
         </Provider>
         </body>
     </html>

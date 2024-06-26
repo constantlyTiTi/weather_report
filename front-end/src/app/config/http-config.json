@@ -1,7 +1,7 @@
 {
     "headers":{
-        "Content-Type": "application/json",
-        "Origin":"http://localhost:3000",
-        "Accept": "application/json"
+        "Content-Type": "application/graphql+json",
+        "Access-Control-Allow-Origin":"*",
+        "Accept": "application/graphql+json"
     }
 } 
