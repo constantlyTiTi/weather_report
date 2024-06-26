@@ -5,7 +5,7 @@ var { createHandler } = require("graphql-http/lib/use/express")
 
 const cors = require("cors");
 
-const schema = require('../schema/schema')
+const schema = require('./schema/schema')
 
 
 const mongoose = require('mongoose')
