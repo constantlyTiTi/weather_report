@@ -1,20 +1,51 @@
 import axios from 'axios'
 import httpConfig from '@/app/config/http-config.json'
 export const getCitiesByProvince = ({province}) => {
-    return axios.get(`/${province}`, {
-        headers:httpConfig.headers
-    })
+    const requestBody =`query getCitiesByProvince {
+    getCitiesByProvince(state:${province}){
+        _id,
+        name,
+        address{
+            state,
+            country
+        },
+        location
+    }
+}`
+    
+        return axios.post(BACKEND_URL, requestBody)
 }
 
 export const getCityByCityId = ({city_id}) => {
-    return axios.get(`/${city_id}`, {
-        headers:httpConfig.headers
-    })
+    const requestBody =`query getLocation {
+        getLocation(city_id:${city_id}){
+            _id,
+            name,
+            address{
+                state,
+                country
+            },
+            location
+        }
+    }`
+    
+        return axios.post(BACKEND_URL, requestBody)
 }
 
 
 export const getProvinces = () => {
-    return axios.get(`/provinces`, {
-        headers:httpConfig.headers
-    })
+
+    const requestBody =`query getProvinces {
+    getProvinces{
+        _id,
+        name,
+        address{
+            state,
+            country
+        },
+        location
+    }
+}`
+
+    return axios.post(BACKEND_URL, requestBody)
 }

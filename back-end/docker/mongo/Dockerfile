@@ -1,17 +1,9 @@
-#
-# MongoDB Dockerfile
-# Use the official MongoDB image as the base image
-FROM mongo:4.4
+FROM mongo:7.0.2
+ENV MONGO_INITDB_ROOT_USERNAME root
+ENV MONGO_INITDB_ROOT_PASSWORD root
+ENV MONGO_INITDB_DATABASE city_db
 
-# Copy seed data or any custom configuration (if needed)
-COPY ./place-city.js /docker-entrypoint-initdb.d/
+COPY data/place-city.ndjson /tmp/place-city.ndjson
+COPY importscript.sh /docker-entrypoint-initdb.d/
 
-# Expose the default MongoDB port
-EXPOSE 27017
-
-# RUN ["chmod", "+x", "database.sh"]
-
-# Command to run MongoDB
-CMD ["mongod"]
-
-# RUN ["./database.sh"]
+ADD init-mongo.js /docker-entrypoint-initdb.d/

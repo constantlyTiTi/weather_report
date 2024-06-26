@@ -5,46 +5,33 @@ import { SearchResultContext } from '../context/createContext'
 import {getCurrentWeatherData} from '../pages/api/weatherApi'
 import {getProvinces, getCitiesByProvince} from '../pages/api/cityApi'
 
-const AddressCombobox = ({ options }) => {
+const AddressCombobox = () => {
 
   const {setSelectCityInfo} = useContext(SearchResultContext)
   const [selectedCity, setSelectedCity]  = useState('')
   const [isOpenDropDown, setIsOpenDropDown] = useState(false)
   const [selectProv, setSelectProv] = useState()
   const [provinces, setProvinces] = useState(["on"])
+  const [cityOptions, setCityOptions] = useState()
   // const inputRef = useRef()
 
   useEffect(()=>{
-    getProvinces().then(res=> setProvinces(res.data)).catch(err => console.log(err))
+    getProvinces().then(res=> setProvinces(res.data.getProvinces)).catch(err => console.log(err))
   },[])
 
- 
+  useEffect(()=>{
+    if(selectProv){
+      getCitiesByProvince(selectProv).then(res => setCityOptions(res.data.getCitiesByProvince)).catch(err => console.log(err))
+    }
+  },[selectProv])
 
   let filteredCity = []
 
-  let filteredCityMock = [
-    {
-      _id:1,
-      name:'aa1',
-      address:{
-          state: 'on',
-          country:'ca'
-      },
-      location:[-123.0737925,49.3206294]
-    }
-  ]
-
-  filteredCity = selectedCity === '' || selectedCity === undefined
-  ? filteredCityMock
-  : filteredCityMock.filter((option) => {
-    return option.name.toLowerCase().includes(selectedCity.toLowerCase())
-  })
-
-  if (!!options && options.length > 0) {
-    filteredCity = query === ''
-      ? options
-      : options.filter((option) => {
-        return option.name.toLowerCase().includes(query.toLowerCase())
+  if (!!cityOptions && cityOptions.length > 0) {
+    filteredCity = selectedCity === ''
+      ? cityOptions
+      : cityOptions.filter((option) => {
+        return option.name.toLowerCase().includes(selectedCity.toLowerCase())
       })
   }
 
@@ -100,9 +87,9 @@ const AddressCombobox = ({ options }) => {
             }
             <div className='grid grid-cols-4 gap-4 py-2'>
             {!!selectProv ? !!filteredCity && filteredCity.map((item)=>(
-              <div key={item.name} onMouseDown={(e)=>setSelectedCityAndUpdateInput(e,item)}>{item.name}</div>
+              <div className="border border-gray-300" key={item.name} onMouseDown={(e)=>setSelectedCityAndUpdateInput(e,item)}>{item.name}</div>
             )) : !!provinces && provinces.map((item)=>(
-              <div key={item} onMouseDown={(e)=>setSelectedProvinceAndUpdateInput(e,item)}>{item}</div>
+              <div className="border border-gray-300" key={item} onMouseDown={(e)=>setSelectedProvinceAndUpdateInput(e,item)}>{item}</div>
             ))}
           </div></div> : null
         }

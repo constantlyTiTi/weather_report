@@ -5,8 +5,12 @@ import {getCurrentWeatherData} from '@/app/pages/api/weatherApi'
 
 export default async function WeatherDisplayCanvas({city_id }) {
 
-  // const cityInfo = await getCityByCityId(city_id)
-  const weatherInfo = await getCurrentWeatherData({lon:-123.0737925,lat:49.3206294})
+  const cityInfo = await getCityByCityId(city_id)
+  const weatherInfo = null
+  if(cityInfo){
+    weatherInfo = await getCurrentWeatherData({lon:cityInfo.location[0],lat:cityInfo.location[1]})
+  }
+  
 
   console.log(weatherInfo)
 
