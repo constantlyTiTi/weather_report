@@ -64,7 +64,7 @@ const WeatherTemperatureBox = ({ weatherInfo, cityName }) => {
                 </div>
 
                 <div className="border border-gray-200 p-5">
-                    <h5 className='text-center'>Sunrise</h5>
+                    <h5 className='text-center'>Sunset</h5>
                     <div className="mt-3">
                         <img src='/sunset-svgrepo-com.svg' />
                     </div>
