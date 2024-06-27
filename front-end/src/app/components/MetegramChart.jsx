@@ -23,19 +23,19 @@ const MetegramChart = ({ weatherInfo,cityName })=>{
         },
         yAxis: {
             title: {
-                text: 'Temperature (°C) / Humidity'
+                text: 'Temperature (°C) / Humidity (%)'
             }
         },
         series: [
           {
             name:"temperature",
             data: temData,
-            type:'line'
+            type:'column'
           },
           {
             name:"humidity",
             data: humidityData,
-            type:'column'
+            type:'line'
           }
         ]
       };
