@@ -21,7 +21,7 @@ export default async function WeatherDisplayCanvas({ city }) {
     
   return (
     !!weatherInfo ?
-      <WeatherTemperatureBox weatherInfo={weatherInfo?.data} cityName={!!city.name ? city.name : "Your Current City"} /> : null
+      <WeatherTemperatureBox weatherInfo={weatherInfo?.data} cityName={city.name} /> : null
 
   );
 }
