@@ -19,13 +19,13 @@ const AddressCombobox = () => {
   // const inputRef = useRef()
 
   useEffect(() => {
-    getProvinces().then(res => setProvinces(res.data.data.getProvinces)).catch(err => console.log(err))
-    getCities().then(res => setAllCities(res.data.data.getCities)).catch(err => console.log(err))
+    getProvinces().then(res => setProvinces(res?.data?.data?.getProvinces)).catch(err => console.log(err))
+    getCities().then(res => setAllCities(res?.data?.data?.getCities)).catch(err => console.log(err))
   }, [])
 
   useEffect(() => {
     if (!!selectProv) {
-      getCitiesByProvince(selectProv).then(res => setCityOptionsProv(res.data.data.getCitiesByProvince)).catch(err => console.log(err))
+      getCitiesByProvince(selectProv).then(res => setCityOptionsProv(res?.data?.data?.getCitiesByProvince)).catch(err => console.log(err))
     }
 
   }, [selectProv])

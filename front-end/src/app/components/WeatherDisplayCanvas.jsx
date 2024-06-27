@@ -11,10 +11,10 @@ export default async function WeatherDisplayCanvas({ city }) {
     weatherInfo = await getCurrentWeatherData({ lon: cityInfo.location[0], lat: cityInfo.location[1] })
   }
   if (city?.location?.length > 1) weatherInfo = await getCurrentWeatherData({ lon: city.location[0], lat: city.location[1] })
-
+    console.log("city",city)
   return (
     !!weatherInfo ?
-      <WeatherTemperatureBox weatherInfo={weatherInfo.data} cityName={!!city ? city.name : "Your Current City"} /> : null
+      <WeatherTemperatureBox weatherInfo={weatherInfo?.data} cityName={!!city.name ? city.name : "Your Current City"} /> : null
 
   );
 }
