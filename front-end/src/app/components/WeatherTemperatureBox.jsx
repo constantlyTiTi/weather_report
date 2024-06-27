@@ -13,14 +13,6 @@ const WeatherTemperatureBox = ({ weatherInfo,cityName }) => {
     const sunsetLocalDateTime = new Date(sunset * 1000).toLocaleString()
     const sunsetDateTime = sunsetLocalDateTime.split(" ")[1] + " " + sunsetLocalDateTime.split(" ")[2]
 
-    const twoDecimal = (num) => {
-        return Math.round((num + Number.EPSILON) * 100) / 100;
-    }
-
-    const celTemp = twoDecimal((temp - 273.15))
-    const celFeel_like = twoDecimal((feels_like - 273.15))
-
-
     return (
         <div className="max-w-lg p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <h5 className="my-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">{cityName}</h5>
@@ -28,19 +20,19 @@ const WeatherTemperatureBox = ({ weatherInfo,cityName }) => {
             <div className="grid grid-cols-3 gap-4">
                 <div>
                     <div>Temperature</div>
-                    <div>{celTemp} °C</div>
+                    <div>{Math.round(temp)} °C</div>
                 </div>
                 <div>
                     <div>wind speed</div>
-                    <div>{wind_speed} </div>
+                    <div>{Math.round(wind_speed)} m/s</div>
                 </div>
                 <div>
                     <div>Feels like</div>
-                    <div>{celFeel_like}</div>
+                    <div>{Math.round(feels_like)} °C</div>
                 </div>
                 <div>
                     <div>Humidity</div>
-                    <div>{humidity}</div>
+                    <div>{humidity}%</div>
                 </div>
             </div>
             <div className="flex my-4">
