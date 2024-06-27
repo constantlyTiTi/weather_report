@@ -82,7 +82,6 @@ const AddressCombobox = () => {
   const clickToSearch = () => {
     const city = allCities.find(option => option.name.toLowerCase().startsWith(selectedCity.toLowerCase()))
 
-    console.log("city", city)
     !!city && setSelectCityInfo(city)
 
 
