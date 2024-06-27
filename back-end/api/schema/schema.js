@@ -48,12 +48,59 @@ const query = new GraphQLObjectType({
                 }
             },
             resolve: async function(root, params){
-                const cities = await City.find({'address.state':params.state})
+                // const cities = await City.distinct("name",{'address.state':params.state})
+
+                const cities = await City.aggregate([{
+                    $match : { 
+                        "address.state" : params.state,
+                     }},
+                     {
+                    $group: {
+                        originalId: {$first: '$_id'}, 
+                        _id: '$name',
+                        name: {$first: '$name'},
+                      }
+                    },
+                    { $unwind:  "$name"},
+
+                    { $project: {
+                        name:"$name" ,
+                        _id: "$originalId",
+                    } 
+                    }
+                ])
 
                 if(!cities && cities.length === 0){
                     throw new Error ('cannot find city')
                 }
 
+                return cities
+            }
+        },
+        getCities : {
+            type: new GraphQLList(cityGLType),
+            args:null,
+            resolve: async function() {
+                const cities = await City.aggregate([
+                    { $unwind:  "$name"},
+                    {
+                        $group: {
+                            originalId: {$first: '$_id'}, 
+                            _id: '$name',
+                            name: {$first: '$name'},
+                          }
+                        },
+    
+                        { $project: {
+                            name:"$name" ,
+                            _id: "$originalId",
+                        } 
+                        }
+                ])
+    
+                if(!cities && cities.length === 0){
+                    throw new Error ('cannot find city')
+                }
                 return cities
             }
         }
