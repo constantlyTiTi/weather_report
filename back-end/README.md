@@ -1,4 +1,4 @@
-## Introduction
+# Introduction
 It is the back-end for tracking Canada city information:
  - It can get geo information of <font color="red">Canada city </font>.
  - The city data is saved in remote MongoDb
@@ -32,3 +32,11 @@ return example
             ...
         ]
 ```
+
+# Local
+```
+npm run dev
+```
+it will be found at http://localhost:5000/graphql
+
+the seed data is here : data\place-city.ndjson
