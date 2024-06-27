@@ -1,27 +1,7 @@
 import axios from 'axios'
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL
-export const getCitiesByProvince = (province ) => {
-    const requestBody = `query getCitiesByProvince {
-    getCitiesByProvince(state:"${province}"){
-        _id,
-        name,
-        address{
-            state,
-            country
-        },
-        location
-    }
-}`
 
-    return axios({
-        url: BACKEND_URL,
-        method: 'post',
-        data: {
-            query: requestBody
-        }
-    })
-}
 
 export const getCityByCityId = ({ city_id }) => {
     const requestBody = `query getLocation {
