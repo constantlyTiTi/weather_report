@@ -4,15 +4,15 @@ const addressGLType = require('./addressGLType')
 const cityGLType = new GraphQLObjectType({
     name: 'cityGLType',
     fields: () => ({
-        _id:{type:GraphQLString},
-        name:{
-            type:GraphQLString
+        _id: { type: GraphQLString },
+        name: {
+            type: GraphQLString
         },
-        address:{
+        address: {
             type: addressGLType
         },
-        location:{
-            type:new GraphQLList(GraphQLString)
+        location: {
+            type: new GraphQLList(GraphQLString)
         }
     })
 });

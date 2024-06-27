@@ -1,12 +1,12 @@
-const { GraphQLObjectType, GraphQLString, GraphQLList } = require('graphql');
+const { GraphQLObjectType, GraphQLString } = require('graphql');
 const addressGLType = new GraphQLObjectType({
     name: 'addressGLType',
     fields: () => ({
         state: {
-            type:GraphQLString
+            type: GraphQLString
         },
-        country:{
-            type:GraphQLString
+        country: {
+            type: GraphQLString
         }
     })
 });

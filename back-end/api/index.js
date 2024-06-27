@@ -14,7 +14,7 @@ mongoose.connect(url)
 const db = mongoose.connection.useDb("city_db")
 db.on('error', (error) => console.error(error))
 db.once('open', () => console.log('Connect to database'))
-const allowedOrigins = [' http://localhost:3000','https://weather-report-front-end.vercel.app']
+const allowedOrigins = [' http://localhost:3000', 'https://weather-report-front-end.vercel.app']
 app.use(cors())
 app.all('/graphql', createHandler({
     schema: schema
