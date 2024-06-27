@@ -1,7 +1,0 @@
-{
-    "headers":{
-        "Content-Type": "application/graphql+json",
-        "Access-Control-Allow-Origin":"*",
-        "Accept": "application/graphql+json"
-    }
-} 

@@ -4,10 +4,6 @@ import { GET_WEATHER_ICON } from '@/app/const/urls'
 
 const WeatherTemperatureBox = ({ weatherInfo,cityName }) => {
 
-    // const { name, weather, main, wind, sys } 
-    // const { temp, feels_like, humidity } = main
-    // const { speed } = wind
-    // const { sunrise, sunset } = sys
     const { current } = weatherInfo
     const { temp, feels_like, humidity, wind_speed, sunrise, sunset, weather } = current
     const dateTime = new Date().toLocaleString()

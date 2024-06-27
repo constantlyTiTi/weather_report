@@ -1,8 +1,6 @@
 'use client'
 import React, { useState, useContext, useEffect } from 'react'
-// import { Loader } from '@googlemaps/js-api-loader';
 import { SearchResultContext } from '../context/createContext'
-import { getCurrentWeatherData } from '../api/weatherApi'
 import { getProvinces, getCitiesByProvince, getCities } from '../api/cityApi'
 
 const AddressCombobox = () => {
@@ -16,7 +14,6 @@ const AddressCombobox = () => {
   const [allCities, setAllCities] = useState()
   const [isTyping, setIsTyping] = useState()
   const [filteredCity, setFilteredCity] = useState()
-  // const inputRef = useRef()
 
   useEffect(() => {
     getProvinces().then(res => setProvinces(res?.data?.data?.getProvinces)).catch(err => console.log(err))

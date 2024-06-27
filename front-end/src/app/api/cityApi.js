@@ -1,5 +1,4 @@
 import axios from 'axios'
-import httpConfig from '@/app/config/http-config.json'
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL
 export const getCitiesByProvince = (province ) => {
