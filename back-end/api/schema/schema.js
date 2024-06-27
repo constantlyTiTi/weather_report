@@ -39,46 +39,6 @@ const query = new GraphQLObjectType({
             }
         },
 
-        getCitiesByProvince: {
-            type: new GraphQLList(cityGLType),
-            args: {
-                state: {
-                    name: 'state',
-                    type: GraphQLString
-                }
-            },
-            resolve: async function (root, params) {
-                // const cities = await City.distinct("name",{'address.state':params.state})
-
-                const cities = await City.aggregate([{
-                    $match: {
-                        "address.state": params.state,
-                    }
-                },
-                {
-                    $group: {
-                        originalId: { $first: '$_id' },
-                        _id: '$name',
-                        name: { $first: '$name' },
-                    }
-                },
-                { $unwind: "$name" },
-
-                {
-                    $project: {
-                        name: "$name",
-                        _id: "$originalId",
-                    }
-                }
-                ])
-
-                if (!cities && cities.length === 0) {
-                    throw new Error('cannot find city')
-                }
-
-                return cities
-            }
-        },
         getCities: {
             type: new GraphQLList(cityGLType),
             args: null,
@@ -88,19 +48,24 @@ const query = new GraphQLObjectType({
                     {
                         $group: {
                             originalId: { $first: '$_id' },
-                            _id: '$name',
+                            _id: "$name",
                             name: { $first: '$name' },
+                            location: { $first: '$location' },
+                            address: { $first: '$address' },
+                            count: { $count: {} }
                         }
                     },
-
+                    { $sort: { name: 1 } },
                     {
                         $project: {
                             name: "$name",
                             _id: "$originalId",
+                            location: '$location',
+                            address: '$address',
                         }
                     }
                 ])
-
+                console.log(cities.length)
                 if (!cities && cities.length === 0) {
                     throw new Error('cannot find city')
                 }
