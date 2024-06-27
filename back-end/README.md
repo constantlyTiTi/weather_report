@@ -17,20 +17,37 @@ eg. query [https://weather-report-back-end.vercel.app/graphql] with
 ```
 return example
 ```
-"data": {
+{
+    "data": {
         "getCities": [
             {
-                "_id": "667bfb0629cfa3d02a3e63af",
-                "name": "Whitehorse",
-                "location": null
+                "_id": "667bfb0629cfa3d02a3e639e",
+                "name": "(Old) Ottawa",
+                "location": [
+                    "-75.68233411939545",
+                    "45.394565549999996"
+                ],
+                "address": {
+                    "state": "Ontario",
+                    "country": "Canada"
+                }
             },
             {
-                "_id": "667bfb0629cfa3d02a3e63f6",
-                "name": "Cold Lake",
-                "location": null
-            }
+                "_id": "667bfb0629cfa3d02a3e63c1",
+                "name": "Abbotsford",
+                "location": [
+                    "-122.329479",
+                    "49.0521162"
+                ],
+                "address": {
+                    "state": "British Columbia",
+                    "country": "Canada"
+                }
+            },
             ...
         ]
+    }
+}
 ```
 
 # Local
