@@ -2,6 +2,7 @@ import React from 'react'
 import WeatherTemperatureBox from '@/app/components/WeatherTemperatureBox'
 import { getCityByCityId } from '@/app/api/cityApi'
 import { getCurrentWeatherData } from '@/app/api/weatherApi'
+import MetegramChart from '@/app/components/MetegramChart'
 
 export default async function WeatherDisplayCanvas({ city }) {
 
@@ -16,6 +17,9 @@ export default async function WeatherDisplayCanvas({ city }) {
     
   return (
     !!weatherInfo ?
-      <WeatherTemperatureBox weatherInfo={weatherInfo?.data} cityName={city.name} /> : null
+    <div className='flex flex-wrap w-full justify-center'>
+      <WeatherTemperatureBox weatherInfo={weatherInfo?.data} cityName={city.name} /> 
+      <MetegramChart weatherInfo={weatherInfo?.data} cityName={city.name}/>
+      </div>: null
   );
 }

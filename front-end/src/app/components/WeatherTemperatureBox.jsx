@@ -2,7 +2,7 @@
 import React from "react";
 import { GET_WEATHER_ICON } from '@/app/const/urls'
 
-const WeatherTemperatureBox = ({ weatherInfo,cityName }) => {
+const WeatherTemperatureBox = ({ weatherInfo, cityName }) => {
 
     const { current } = weatherInfo
     const { temp, feels_like, humidity, wind_speed, sunrise, sunset, weather } = current
@@ -15,8 +15,24 @@ const WeatherTemperatureBox = ({ weatherInfo,cityName }) => {
 
     return (
         <div className="max-w-lg p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <h5 className="my-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">{cityName}</h5>
-            <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">{dateTime}</p>
+            <div className="flex justify-between">
+                <div className="flex-initial w-70">
+                    <h5 className="my-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">{cityName}</h5>
+                    <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">{dateTime}</p>
+                </div>
+
+                <div className="flex-initial w-30 ">
+                    {
+                        !!weather && weather.length > 0 ? weather.map(item => (
+                            <div key={`${item}-div`} className="p-2">
+                                <h5 key={`${item}-h5`} className='text-center'>{item.main}</h5>
+                                <img key={`${item}-img`} src={`${GET_WEATHER_ICON}${item.icon}@2x.png`} />
+                            </div>
+                        )) : null
+                    }
+
+                </div>
+            </div>
             <div className="grid grid-cols-3 gap-4">
                 <div>
                     <div>Temperature</div>
@@ -35,7 +51,7 @@ const WeatherTemperatureBox = ({ weatherInfo,cityName }) => {
                     <div>{humidity}%</div>
                 </div>
             </div>
-            <div className="flex my-4">
+            <div className="flex my-4 justify-between">
 
                 <div className="border border-gray-200 p-5">
                     <h5 className='text-center'>Sunrise</h5>
@@ -57,17 +73,6 @@ const WeatherTemperatureBox = ({ weatherInfo,cityName }) => {
 
             </div>
 
-            <div className="flex my-4">
-                {
-                    !!weather && weather.length > 0 ? weather.map(item => (
-                        <div key={`${item}-div`} className="border border-gray-200">
-                            <h5 key={`${item}-h5`} className='text-center'>{item.main}</h5>
-                            <img key={`${item}-img`} src={`${GET_WEATHER_ICON}${item.icon}@2x.png`} />
-                        </div>
-                    )) : null
-                }
-
-            </div>
         </div>
 
     )

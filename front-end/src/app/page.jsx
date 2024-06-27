@@ -4,6 +4,7 @@ import WeatherDisplayCanvas from '@/app/components/WeatherDisplayCanvas'
 import { SearchResultContext } from '@/app/context/createContext'
 import { DEFAULT_CITY } from './const/urls'
 
+
 const Home = () => {
   const { selectCityInfo, setSelectCityInfo } = useContext(SearchResultContext)
 
@@ -12,7 +13,8 @@ const Home = () => {
       setSelectCityInfo(DEFAULT_CITY)
   },[])
 
-  return selectCityInfo ? <WeatherDisplayCanvas city={selectCityInfo} />
+  return selectCityInfo ? 
+  <WeatherDisplayCanvas city={selectCityInfo} />
     : null
 }
 

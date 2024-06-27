@@ -2,7 +2,7 @@ import React from "react";
 
 const AddressComboboxDropdown = ({selectProv,isTyping,filteredCity, provinces, backToCountry,setSelectedCityAndUpdateInput,setSelectedProvinceAndUpdateInput}) => {
 
-    return <div className='absolute left-0 py-2 w-full bg-white px-2'>
+    return <div className='absolute left-0 py-2 w-full bg-white px-2 z-40 shadow-md'>
     <h5 className='py-2 font-semibold text-sm leading-6 text-gray-900'>Please choose a {!!selectProv || isTyping ? 'city' : 'province'}</h5>
     {!!selectProv && !isTyping ?
       <div className="font-medium text-blue-600 dark:text-blue-500 hover:underline" onMouseDown={backToCountry}>back to province</div> : null
