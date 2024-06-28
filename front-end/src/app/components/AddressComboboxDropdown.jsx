@@ -24,7 +24,10 @@ const AddressComboboxDropdown = ({ selectProv, isTyping, filteredCity, provinces
                                 ))}</div>
 
                 }
-            </div> : <LoadingCircle />)
+            </div> : 
+        <div className="absolute left-0 py-2 w-full bg-white px-2 z-40 shadow-md max-h-[50vh]">
+            <LoadingCircle/>
+            </div>)
 }
 
 export default AddressComboboxDropdown
