@@ -40,7 +40,9 @@ const MetegramChart = ({ weatherInfo,cityName })=>{
         ]
       };
 
-    return <div className='mx-5'><HighchartsReact highcharts={Highcharts} options={options} /></div>
+    return <div className='mx-3 w-fit overflow-auto'>
+        <HighchartsReact highcharts={Highcharts} options={options} />
+    </div>
 }
 
 export default MetegramChart
